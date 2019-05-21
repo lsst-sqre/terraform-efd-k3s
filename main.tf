@@ -26,7 +26,7 @@ module "efd" {
   source = "git::https://github.com/lsst-sqre/terraform-efd.git//?ref=master"
 
   # for development it is useful to use a local path
-  #source = "../terraform-efd-kafka"
+  #source = "../terraform-efd"
 
   # replace with data lookup?
   domain_name                    = "${var.domain_name}"
@@ -50,6 +50,7 @@ module "efd" {
   prometheus_oauth_client_id     = "${var.prometheus_oauth_client_id}"
   prometheus_oauth_client_secret = "${var.prometheus_oauth_client_secret}"
   prometheus_oauth_github_org    = "${var.prometheus_oauth_github_org}"
+  storage_class                  = "${var.storage_class}"
   tls_crt_path                   = "${var.tls_crt_path}"
   tls_key_path                   = "${var.tls_key_path}"
   zookeeper_data_dir_size        = "${var.zookeeper_data_dir_size}"
