@@ -36,6 +36,7 @@ module "efd" {
   dns_enable                     = "${var.dns_enable}"
   dns_overwrite                  = "${var.dns_overwrite}"
   env_name                       = "${var.env_name}"
+  enable_telegraf_daemonset      = "${var.enable_telegraf_daemonset}"
   github_token                   = "${var.github_token}"
   github_user                    = "${var.github_user}"
   grafana_admin_pass             = "${var.grafana_admin_pass}"
