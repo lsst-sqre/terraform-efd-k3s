@@ -25,9 +25,6 @@ provider "kubernetes" {
 module "efd" {
   source = "git::https://github.com/lsst-sqre/terraform-efd.git//?ref=master"
 
-  # for development it is useful to use a local path
-  #source = "../terraform-efd"
-
   # replace with data lookup?
   domain_name                    = "${var.domain_name}"
   aws_zone_id                    = "${var.aws_zone_id}"
@@ -47,6 +44,7 @@ module "efd" {
   influxdb_admin_pass            = "${var.influxdb_admin_pass}"
   influxdb_admin_user            = "${var.influxdb_admin_user}"
   influxdb_telegraf_pass         = "${var.influxdb_telegraf_pass}"
+  kafka_loadbalancers            = "${var.kafka_loadbalancers}"
   kubeconfig_filename            = "${var.kubeconfig_filename}"
   prometheus_oauth_client_id     = "${var.prometheus_oauth_client_id}"
   prometheus_oauth_client_secret = "${var.prometheus_oauth_client_secret}"
