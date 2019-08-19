@@ -22,6 +22,31 @@ provider "kubernetes" {
   load_config_file = true
 }
 
+resource "kubernetes_namespace" "tiller" {
+  metadata {
+    name = "tiller"
+  }
+}
+
+module "tiller" {
+  source = "git::https://github.com/lsst-sqre/terraform-tinfoil-tiller.git?ref=0.10.x"
+
+  namespace = "${kubernetes_namespace.tiller.metadata.0.name}"
+}
+
+provider "helm" {
+  version = "~> 0.10.0"
+
+  service_account = "${module.tiller.service_account}"
+  namespace       = "${module.tiller.namespace}"
+  install_tiller  = false
+
+  kubernetes {
+    config_path      = "${var.kubeconfig_filename}"
+    load_config_file = true
+  }
+}
+
 module "efd" {
   source = "git::https://github.com/lsst-sqre/terraform-efd.git//?ref=0.1.0"
 
@@ -52,4 +77,10 @@ module "efd" {
   tls_key                        = "${local.tls_key}"
   zookeeper_data_dir_size        = "${var.zookeeper_data_dir_size}"
   zookeeper_log_dir_size         = "${var.zookeeper_log_dir_size}"
+}
+
+provider "influxdb" {
+  url      = "https://${local.dns_prefix}influxdb-${var.deploy_name}.${var.domain_name}"
+  username = "${var.influxdb_admin_user}"
+  password = "${var.influxdb_admin_pass}"
 }
