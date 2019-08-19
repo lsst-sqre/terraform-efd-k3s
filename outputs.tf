@@ -1,5 +1,13 @@
-output "confluent_lb_ips" {
-  value = "${module.efd.confluent_lb_ips}"
+output "confluent_lb0" {
+  value = "${module.efd.confluent_lb0}"
+}
+
+output "confluent_lb1" {
+  value = "${module.efd.confluent_lb1}"
+}
+
+output "confluent_lb2" {
+  value = "${module.efd.confluent_lb2}"
 }
 
 output "nginx_ingress_ip" {

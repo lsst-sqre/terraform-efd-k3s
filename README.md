@@ -61,7 +61,9 @@ terragrunt = {
 
 | Name | Description |
 |------|-------------|
-| confluent\_lb\_ips |  |
+| confluent\_lb0 |  |
+| confluent\_lb1 |  |
+| confluent\_lb2 |  |
 | grafana\_fqdn |  |
 | influxdb\_fqdn |  |
 | nginx\_ingress\_ip |  |
