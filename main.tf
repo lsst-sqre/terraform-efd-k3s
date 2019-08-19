@@ -16,7 +16,7 @@ provider "aws" {
 }
 
 provider "kubernetes" {
-  version = "~> 1.6.2"
+  version = "~> 1.7.0"
 
   config_path      = "${var.kubeconfig_filename}"
   load_config_file = true
